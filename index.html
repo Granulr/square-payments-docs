@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Square Payments for Perfex CRM Next | Setup guide</title>
+  <style>
+    :root {
+      color: #182639;
+      background: #f3f6fb;
+      font: 16px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --navy: #26202a;
+      --ink: #182639;
+      --link: #9f164b;
+      --muted: #4c5d71;
+      --border: #dce5ef;
+      --paper: #fff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: var(--link); text-underline-offset: .17em; }
+    a:focus-visible { outline: 3px solid #b41a53; outline-offset: 3px; border-radius: 2px; }
+    .skip { position: absolute; left: .75rem; top: .75rem; padding: .4rem .75rem; background: #fff; transform: translateY(-200%); }
+    .skip:focus { transform: none; }
+    header { background: radial-gradient(ellipse at top right, #480f2a, #18171c 65%); color: #fff; border-bottom: 5px solid #ff105b; }
+    .header-inner { width: min(70rem, 100%); margin-inline: auto; padding: 2.65rem 1.75rem 2.8rem; }
+    .wordmark { display: block; width: 8rem; height: auto; margin-bottom: 1.15rem; }
+    h1, h2, h3, h4 { line-height: 1.22; margin-block: 0 .65rem; }
+    h1 { font-size: clamp(2rem, 4.5vw, 3.25rem); letter-spacing: -.044em; max-width: 18ch; }
+    h2 { font-size: clamp(1.4rem, 2.6vw, 1.95rem); color: var(--navy); letter-spacing: -.027em; }
+    h3 { margin-top: 1.55rem; font-size: 1.18rem; color: var(--navy); }
+    h4 { font-size: 1.05rem; color: var(--navy); }
+    p { margin: .5rem 0 1rem; }
+    .header-inner p { color: #e4dce5; max-width: 62ch; margin-block: .65rem 0; }
+    .version { font-size: .91rem; font-weight: 600; }
+    .layout { width: min(70rem, 100%); display: grid; grid-template-columns: 13rem 1fr; gap: 1.5rem; margin-inline: auto; padding: 1.5rem 1.75rem 2.5rem; }
+    nav { align-self: start; position: sticky; top: 1rem; }
+    nav div { background: var(--paper); border: 1px solid var(--border); padding: 1rem; border-radius: .8rem; }
+    nav p { font-weight: 700; color: var(--navy); margin: 0 0 .55rem; }
+    nav ol { list-style: none; margin: 0; padding: 0; }
+    nav a { display: block; font-size: .9rem; line-height: 1.38; padding-block: .35rem; }
+    main { min-width: 0; }
+    section { background: var(--paper); border: 1px solid var(--border); border-radius: .8rem; margin-block-end: 1rem; padding: clamp(1.1rem, 3.4vw, 2rem); scroll-margin-top: 1rem; }
+    li + li { margin-top: .45rem; }
+    nav li + li { margin-top: 0; }
+    ul, ol { padding-inline-start: 1.45rem; }
+    code, pre { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: .88em; }
+    code { background: #edf3f9; padding: .08em .3em; border-radius: .25em; overflow-wrap: anywhere; }
+    pre { background: #26202a; color: #fff; padding: .8rem 1rem; border-radius: .5rem; overflow-x: auto; }
+    pre code { background: none; padding: 0; font-size: inherit; }
+    .note { margin: 1rem 0; padding: .9rem 1rem; border-left: 4px solid #3d7fbe; background: #edf5fe; border-radius: 0 .4rem .4rem 0; }
+    .note p:last-child { margin-bottom: 0; }
+    .caution { border-left-color: #a36909; background: #fff6e2; }
+    figure { margin: 1.1rem 0 1.3rem; }
+    figure img { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: .55rem; background: #f3f6fb; }
+    figcaption { font-size: .87rem; color: var(--muted); margin-top: .45rem; }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: .94rem; }
+    th, td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); padding: .68rem .75rem; }
+    th { background: #edf3f9; font-weight: 700; color: var(--navy); }
+    td:first-child { min-width: 10rem; }
+    .checklist { margin-bottom: .5rem; }
+    .checklist li { margin-top: .35rem; }
+    footer { padding: 0 1.75rem 1.75rem; margin: auto; width: min(70rem, 100%); color: var(--muted); font-size: .9rem; }
+    @media (max-width: 50rem) {
+      .layout { grid-template-columns: 1fr; padding-inline: 1rem; gap: 1rem; }
+      .header-inner { padding-inline: 1.1rem; }
+      nav { position: static; }
+      nav ol { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); column-gap: .75rem; }
+    }
+    @media print {
+      :root { background: #fff; }
+      header { background: none; color: var(--ink); border-bottom: 1px solid var(--border); }
+      .header-inner p, footer { color: var(--ink); }
+      .layout { display: block; padding: .75rem 0; }
+      nav, .skip, .wordmark { display: none; }
+      section { padding: .6rem 0; border: 0; }
+      figure, tr { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip">Skip to setup guide</a>
+  <header>
+    <div class="header-inner" id="top">
+      <img class="wordmark" src="images/granulr-logo.png" alt="Granulr" width="505" height="125">
+      <h1>Square Payments for Perfex CRM Next</h1>
+      <p>Install the module, connect Square and verify invoice payments and refunds.</p>
+      <p><strong>Requires Perfex CRM Next v1.0.1 or later. Perfex CRM Classic (CodeIgniter) is incompatible.</strong></p>
+      <p class="version">Setup guide · Version 0.1.4 development and review build</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav aria-label="Setup guide contents">
+      <div>
+        <p>Setup guide</p>
+        <ol>
+          <li><a href="#requirements">Requirements</a></li>
+          <li><a href="#environments">Sandbox and live Square</a></li>
+          <li><a href="#install">Install</a></li>
+          <li><a href="#credentials">Save credentials</a></li>
+          <li><a href="#webhooks">Configure webhooks</a></li>
+          <li><a href="#test">Test checkout and refunds</a></li>
+          <li><a href="#operations">Operations and upgrades</a></li>
+          <li><a href="#troubleshooting">Troubleshooting</a></li>
+          <li><a href="#compatibility">Compatibility and support</a></li>
+        </ol>
+      </div>
+    </nav>
+
+    <main id="main">
+      <section id="requirements" aria-labelledby="requirements-title">
+        <h2 id="requirements-title">Requirements</h2>
+        <p>The module takes payment for the outstanding balance of an eligible Perfex invoice through Square-hosted checkout. Perfex records the payment after Square confirms it. The original payment can be refunded from Perfex by authorised staff.</p>
+        <ul>
+          <li>A self-hosted installation of <strong>Perfex CRM Next</strong> v1.0.1 or later, with the <strong>Invoices</strong> module enabled. Perfex CRM Classic (CodeIgniter) is incompatible. The tested Next version is v1.0.1. The PHP ZIP extension is required for module uploads.</li>
+          <li>A Perfex <strong>super admin</strong> account for Square connection and setup.</li>
+          <li>A Square Developer application owned by your organisation, plus a Square merchant account and eligible card-processing location in the environment you will use.</li>
+          <li>A publicly reachable <strong>HTTPS</strong> Perfex hostname to receive Square payment and refund notifications. You can verify a token and location on a local installation before testing payment delivery.</li>
+          <li>A working Perfex scheduler and the queue setup that matches its configured driver.</li>
+        </ul>
+        <div class="note caution"><p><strong>Start on a test installation.</strong> A confirmed Sandbox payment updates its matching invoice in the Perfex installation that receives it. Use test invoices, test merchant data and Square test payment methods.</p></div>
+        <p><a href="https://perfexcrm.com/docs/1.x/requirements">Perfex Next server requirements</a> · <a href="https://developer.squareup.com/docs/devtools/sandbox/overview">Square Sandbox overview</a></p>
+      </section>
+
+      <section id="environments" aria-labelledby="environments-title">
+        <h2 id="environments-title">Square Sandbox and live Square</h2>
+        <p><strong>Already taking payments with Square?</strong> Use your existing Square login and merchant account. Open an application you control in Square Developer Console or create one for Perfex. The application provides your access token and webhook subscription. Your existing Square merchant account receives the payments.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Sandbox and Production setup differences">
+          <table>
+            <thead><tr><th scope="col">What to set</th><th scope="col">Sandbox</th><th scope="col">Production</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Square seller and data</th><td>Use a Sandbox test seller and location. The Sandbox Testing Panel simulates the payment.</td><td>Use your existing live Square seller and the location that should receive invoice payments.</td></tr>
+              <tr><th scope="row">Square Developer app</th><td>Select Sandbox to copy your test access token and create a test webhook subscription.</td><td>Select Production for the live access token and its own webhook subscription.</td></tr>
+              <tr><th scope="row">Perfex configuration</th><td>Use the Sandbox fields on a test Perfex installation and turn on <strong>Test / sandbox mode</strong>.</td><td>Use the Production fields on your live Perfex installation and turn off <strong>Test / sandbox mode</strong> when ready to accept customer payments.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Quick connection check on localhost or MAMP</h3>
+        <ol>
+          <li>In your Square Developer application, open <strong>Credentials</strong> and select <strong>Sandbox</strong> at the top. In the <strong>Sandbox Access token</strong> row, use the copy icon labelled <strong>Copy Access token</strong>.</li>
+          <li>In Perfex, open <strong>Settings → Finance → Payment Gateways → Square → Configure</strong>. Turn on <strong>Test / sandbox mode</strong>, leave <strong>Enabled</strong> off and paste the token into <strong>Sandbox personal access token</strong>. Leave the webhook key and Production fields blank for this check.</li>
+          <li>Select <strong>Save</strong> to store the token locally. From the Perfex application directory, run <code>php artisan square:verify</code> with the same PHP version used by Perfex. Reopen <strong>Configure</strong> to see the verified location and currency. If the check asks you to choose a location, copy its <strong>Location ID</strong> from <strong>Locations</strong> in the same Square app and environment, save it in Perfex and run the check again.</li>
+        </ol>
+        <p>Complete the webhook and invoice test steps on a test Perfex hostname that Square can reach over HTTPS.</p>
+        <p><a href="https://developer.squareup.com/docs/devtools/developer-dashboard">Square Developer Console credential walkthrough</a> · <a href="https://developer.squareup.com/docs/build-basics/access-tokens">Square credentials by environment</a></p>
+      </section>
+
+      <section id="install" aria-labelledby="install-title">
+        <h2 id="install-title">1. Install the module</h2>
+        <ol>
+          <li>Extract the purchase download and locate <strong>SquarePayments-0.1.4.zip</strong>.</li>
+          <li>In Perfex, open <strong>Settings → Application → Modules</strong>. Upload the inner module ZIP and enable <strong>Square Payments</strong>.</li>
+          <li>Open <strong>Settings → Finance → Payment Gateways</strong>. Find the <strong>Square</strong> row and select <strong>Configure</strong> to edit its settings.</li>
+        </ol>
+        <p>For a first-time installation, upload the latest ZIP directly. Perfex creates the module tables when you enable it. Earlier versions are unnecessary.</p>
+        <figure>
+          <img src="images/01-payment-gateways.png" alt="Perfex Next Payment Gateways list with the Square row and its Configure button">
+          <figcaption>Open Configure on the Square row to set up the gateway.</figcaption>
+        </figure>
+        <p><a href="https://perfexcrm.com/docs/1.x/modules/packaging-and-validation">Perfex Next module package documentation</a></p>
+      </section>
+
+      <section id="credentials" aria-labelledby="credentials-title">
+        <h2 id="credentials-title">2. Save Square credentials</h2>
+        <p>Sign in to the <a href="https://developer.squareup.com/apps">Square Developer Console</a>, open or create the application your organisation will use, and select <strong>Sandbox</strong> at the top of the application for the first test. Use this same Square application and environment throughout setup.</p>
+        <figure>
+          <img src="images/04-square-sandbox-selector.jpg" alt="Square Developer Console Credentials screen with Sandbox selected in the environment switcher" width="610" height="148">
+          <figcaption>Square Developer Console. Select Sandbox above Credentials for your first connection check.</figcaption>
+        </figure>
+        <p>Open <strong>Square → Configure</strong> and enter values in the matching <strong>Sandbox</strong> or <strong>Production</strong> fields. Each environment has its own token, location and signature key.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Where to find each Square setting">
+          <table>
+            <thead><tr><th scope="col">Field in Perfex</th><th scope="col">Where to find it in Square</th></tr></thead>
+            <tbody>
+              <tr><td>Sandbox personal access token</td><td><strong>Credentials → Sandbox</strong>. Use <strong>Copy Access token</strong> in the <strong>Sandbox Access token</strong> row.</td></tr>
+              <tr><td>Production personal access token</td><td><strong>Credentials → Production</strong>. Use <strong>Copy Access token</strong> in the <strong>Production Access token</strong> row.</td></tr>
+              <tr><td>Location ID</td><td>Leave blank if you have a single eligible location. If Square returns several, open <strong>Locations</strong> in the same app and copy the ID of the location that should receive payments. Its currency must match the invoice currency.</td></tr>
+              <tr><td>Webhook signature key</td><td>Open <strong>Webhooks → Subscriptions</strong> and copy the key from <strong>Endpoint Details → Signature Key</strong>. Create the subscription in step 3.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Select <strong>Save</strong> to store the settings. Run <code>php artisan square:verify</code> from the Perfex application directory, or wait for the scheduled connection check. For a token-only check, leave <strong>Enabled</strong> off. Reopen <strong>Configure</strong> to see the connection status. If there is one eligible location, the check saves its ID automatically.</p>
+        <figure>
+          <img src="images/02-square-credentials-v014.jpg" alt="Square Configure dialog showing a masked Sandbox token and pending location verification">
+          <figcaption>After Save, the token is masked. Reopen Configure to check whether the saved location has been verified.</figcaption>
+        </figure>
+        <p class="note">Enter secrets only in your own Perfex installation. Keep access tokens and signing keys out of screenshots, tickets and shared setup notes.</p>
+        <p><a href="https://developer.squareup.com/docs/devtools/developer-dashboard">Square Developer Console guide</a> · <a href="https://developer.squareup.com/docs/build-basics/access-tokens">Square credentials</a> · <a href="https://developer.squareup.com/docs/locations-api">Square Locations guide</a></p>
+      </section>
+
+      <section id="webhooks" aria-labelledby="webhooks-title">
+        <h2 id="webhooks-title">3. Configure and verify webhooks</h2>
+        <ol>
+          <li>In <strong>Square → Configure</strong>, copy the exact <strong>Webhook URL</strong> near the bottom of the dialog. Open the same Square app and environment in Developer Console.</li>
+          <li>
+            <p>Go to <strong>Webhooks → Subscriptions → Add subscription</strong> and fill in the form.</p>
+            <div class="table-wrap" tabindex="0" role="region" aria-label="Square webhook subscription settings">
+              <table>
+                <thead><tr><th scope="col">Field in Square</th><th scope="col">What to select</th></tr></thead>
+                <tbody>
+                  <tr><td>Subscription name</td><td>A label such as <strong>Perfex Next Sandbox</strong> or <strong>Perfex Next Production</strong>.</td></tr>
+                  <tr><td>Notification URL</td><td>Paste the exact <strong>Webhook URL</strong> from Perfex, including any port. Square must be able to reach it over HTTPS.</td></tr>
+                  <tr><td>API version</td><td><code>2026-11-18</code>, the version used by this module.</td></tr>
+                  <tr><td>Payments (2)</td><td>Select <code>payment.created</code> and <code>payment.updated</code>.</td></tr>
+                  <tr><td>Refunds (2)</td><td>Select <code>refund.created</code> and <code>refund.updated</code>.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Select only those four events. Leave the three bulk event checkboxes and the other categories, including <strong>Checkout</strong> and <strong>Invoices</strong>, unchecked. Select <strong>Save</strong>.</p>
+            <p class="note">For a local address such as <code>perfexnext.local</code>, use the token-only check in step 2. Square needs a public HTTPS URL to deliver the webhook.</p>
+          </li>
+          <li>Open the saved subscription. In <strong>Endpoint Details</strong>, select <strong>Show</strong> under <strong>Signature Key</strong>. Copy it into <strong>Sandbox webhook signature key</strong> or <strong>Production webhook signature key</strong> in Perfex, matching the subscription’s environment.</li>
+          <li>In the same editor, set <strong>Test / sandbox mode</strong> on for Sandbox, or off for Production. Set <strong>Fixed surcharge</strong> and <strong>Percent surcharge (%)</strong> to zero. Under <strong>Supported currencies</strong>, include the saved Square location’s currency. Turn on <strong>Enabled</strong> and save. The invoice option appears after signed delivery is verified.</li>
+          <li>Send a signed event that names the merchant connected in Perfex, then reopen <strong>Configure</strong> with that environment selected. The <strong>Waiting for a signed webhook delivery</strong> notice clears after a matching delivery.</li>
+        </ol>
+        <h3>Generate a real Sandbox event for the connected merchant</h3>
+        <p>Square’s test button can send sample merchant data. A successful delivery of that sample alone may leave Perfex waiting for a signed event from your merchant. Do this from <strong>Sandbox</strong>, with the same Square app and test seller connected in Perfex.</p>
+        <ol>
+          <li>Open the <a href="https://developer.squareup.com/explorer/square/payments-api/CreatePayment">CreatePayment API Explorer</a> and select <strong>Sandbox</strong>. Select the access token for the connected test seller and the saved location ID.</li>
+          <li>Use the test <code>source_id</code> <code>cnon:card-nonce-ok</code>, a fresh <code>idempotency_key</code> and a small amount in the location’s currency in minor units. For example, an amount of <code>100</code> in <code>GBP</code> is £1.00. Include the selected <code>location_id</code>.</li>
+          <li>Run the Sandbox request. Check the event delivery in Square’s webhook logs, then reopen <strong>Configure</strong> and check that the waiting notice has cleared. This payment establishes delivery from your test seller. It has no matching Perfex checkout record. Complete step 4 to test invoice posting.</li>
+        </ol>
+        <p class="note caution">A private or local-only hostname cannot receive Square notifications. For end-to-end setup, use a controlled staging domain with a valid public HTTPS certificate. Create the Square subscription using the exact URL shown in Perfex, including any subdirectory path.</p>
+        <p><a href="https://developer.squareup.com/docs/webhooks/step2subscribe">Square subscription setup</a> · <a href="https://developer.squareup.com/docs/webhooks/step3validate">Square signature verification</a> · <a href="https://developer.squareup.com/docs/devtools/api-explorer">API Explorer instructions</a></p>
+      </section>
+
+      <section id="test" aria-labelledby="test-title">
+        <h2 id="test-title">4. Test checkout and refunds</h2>
+        <ol class="checklist">
+          <li>Create a payable test invoice in the saved Square location’s currency. Open its customer invoice page and choose <strong>Square</strong>.</li>
+          <li>In Square's <strong>Checkout API Sandbox Testing Panel</strong>, choose <strong>Next</strong>, then <strong>Test Payment</strong> to simulate payment. The <strong>Preview Link</strong> displays the buyer's checkout page for inspection.</li>
+          <li>Once Square shows <strong>Checkout Complete</strong>, reopen the Perfex invoice. Check that its balance updates and the native <strong>Payments</strong> section contains one matching payment. If confirmation is still pending, check the Square event and the queue, then run the reconciliation command under Operations and upgrades if needed.</li>
+          <li>Open the native Square payment in Perfex and choose <strong>Refund payment</strong>. Confirm only on the intended test record. The native action requests the remaining refundable amount against the original payment.</li>
+          <li>Check the outcome on the payment. A pending refund stays pending until Square confirms it. A failed or rejected refund leaves the collected amount unchanged. The module can also reflect refunds made on the original payment in Square, including partial refunds.</li>
+        </ol>
+        <h3>What a completed Sandbox test looks like</h3>
+        <figure>
+          <img src="images/05-customer-invoice.jpg" alt="Customer invoice with Square listed under Pay online for the £1.00 balance" width="1114" height="664" loading="lazy">
+          <figcaption>Choose Square in the Pay online section of the test invoice.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/06-sandbox-checkout-complete.jpg" alt="Square Sandbox Checkout Complete message confirming the test payment succeeded" width="885" height="132" loading="lazy">
+          <figcaption>Square confirms the test payment in its Sandbox panel.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/07-invoice-paid.jpg" alt="Perfex invoice marked Paid with £1.00 paid and £0.00 due" width="1300" height="805" loading="lazy">
+          <figcaption>Perfex marks the test invoice Paid and updates its balance after the signed Square event.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/08-refund-processed.jpg" alt="Original Perfex Square payment with a £1.00 refund marked Processed" width="1309" height="935" loading="lazy">
+          <figcaption>After Square confirms the refund, the original payment in Perfex shows the refund as Processed.</figcaption>
+        </figure>
+        <h3>Switch to Production after verification</h3>
+        <p>Repeat the token, location and webhook steps using the <strong>Production</strong> environment and the merchant’s production app credentials. In the intended production Perfex installation, turn <strong>Test / sandbox mode</strong> off and confirm both surcharges are zero. Check the location currency and wait for a matching signed event from the live merchant, such as the next normal payment through that Square account. Only send customers to the Perfex Square checkout after both the connection and delivery status are verified.</p>
+        <p><a href="https://perfexcrm.com/docs/1.x/payment-gateways#refunds">Perfex native payment refunds</a> · <a href="https://developer.squareup.com/docs/payments-api/refund-payments">Square refund status guide</a></p>
+      </section>
+
+      <section id="operations" aria-labelledby="operations-title">
+        <h2 id="operations-title">Operations and upgrades</h2>
+        <h3>Scheduler and reconciliation</h3>
+        <p>Set up the <a href="https://perfexcrm.com/docs/1.x/cron">Perfex cron job</a> to invoke Laravel’s scheduler every minute. The Square module checks unverified Square settings and runs a reconciliation batch every five minutes. It checks outstanding payments and refunds when Square is enabled. If the queue uses Database or Redis, keep its worker running. The default Cron queue uses the scheduler.</p>
+        <pre><code>* * * * * php /path/to/perfex/artisan schedule:run</code></pre>
+        <p>For a manual check, run this command from the Perfex application directory using the same PHP version and application user as your scheduler. It checks batches for both environments.</p>
+        <pre><code>php artisan square:reconcile</code></pre>
+        <p>On a native payment, <strong>Check Square refunds</strong> looks for provider-side refunds to reconcile.</p>
+        <h3>Reconnect or change a location</h3>
+        <p>Choose the original environment when reconnecting. Review outstanding checkouts and refunds before replacing a merchant connection. Historical payments retain the merchant account and location used at the time. If credentials for the original merchant are no longer connected, restore that account in the correct environment to manage its earlier payment or refund.</p>
+        <h3>Upgrade safely</h3>
+        <ol>
+          <li>Check the new package’s version requirements and test it on a copy of the installation.</li>
+          <li>Back up the database, installed module files and the Perfex encryption key. Retain the previous package and protect the backup.</li>
+          <li>Use Perfex’s module upload or update flow to replace the module. Preserve the installed module data and follow the package’s migration instructions.</li>
+          <li>Verify the connection and delivery status for each configured environment. If you used OAuth on an earlier build, enter the personal access token for the same Square merchant in Configure before taking new invoice payments. Existing payments and refunds keep their original references. Check the scheduler and queue, then test an eligible invoice and a refund on the staging copy.</li>
+        </ol>
+        <p><a href="https://perfexcrm.com/docs/1.x/cron">Perfex cron setup</a> · <a href="https://perfexcrm.com/docs/1.x/queues">Perfex queue setup</a></p>
+      </section>
+
+      <section id="troubleshooting" aria-labelledby="troubleshooting-title">
+        <h2 id="troubleshooting-title">Troubleshooting</h2>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Troubleshooting symptoms and actions">
+          <table>
+            <thead><tr><th scope="col">Symptom</th><th scope="col">What to check</th></tr></thead>
+            <tbody>
+              <tr><td>Location verification is pending or failed</td><td>Run <code>php artisan square:verify</code> from the Perfex application directory and check the result. Copy the token again from the correct Square app and environment if needed. Reopen Configure to see the latest status.</td></tr>
+              <tr><td>No eligible location appears</td><td>Check the connected merchant, environment and location status in Square. The location needs card-processing capability and a supported currency.</td></tr>
+              <tr><td>Square Developer Console cannot create the subscription</td><td>Confirm that the notification URL is the exact public HTTPS address from Perfex. If the console still shows a generic error, use Square’s Create webhook subscription API with the same application’s access token, API version and four events from step 3. For Sandbox, use the Sandbox endpoint and token. <a href="https://developer.squareup.com/reference/square/webhook-subscriptions-api/create-webhook-subscription">Square subscription API</a></td></tr>
+              <tr><td>Waiting for a signed delivery</td><td>Confirm Square is Enabled, the external HTTPS URL is reachable, the four events are subscribed and the saved signature key belongs to the correct environment. If a test delivery contains a sample merchant, generate a real event for the connected Sandbox test seller. Look up the delivery status in Square’s webhook logs.</td></tr>
+              <tr><td>Square is missing from an invoice</td><td>Check that the invoice is payable, Square is enabled, Test mode matches the connected environment, signed delivery is verified, both fees are zero and the invoice currency matches the active Square location and allowed Perfex currencies.</td></tr>
+              <tr><td>Square shows a completed payment, but the invoice is still unpaid</td><td>Check the original payment environment and merchant, Square webhook delivery and Perfex Platform Health. Run the reconciliation command. If the invoice currency changed after checkout, reconcile the Square payment ID and original invoice currency with your finance team. Avoid entering a duplicate manual payment while reconciliation is pending.</td></tr>
+              <tr><td>A refund remains pending or could not be sent</td><td>Check the payment and refund in the original Square account. Use Check Square refunds or the reconciliation command. Restore the original merchant connection if it changed. Wait for the existing refund’s final state before starting another request.</td></tr>
+              <tr><td>Payments were missed while Square was disabled</td><td>Restore the correct connection and settings, re-enable Square and run the reconciliation command. A verified capture can be reconciled through the saved Perfex checkout record.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>For a reverse proxy, verify the public Perfex URL and trusted proxy settings before copying the webhook URL. A hostname or HTTPS scheme mismatch changes the URL checked against Square’s signature. <a href="https://developer.squareup.com/docs/devtools/webhook-logs">Square webhook event logs</a> · <a href="https://perfexcrm.com/docs/1.x/troubleshooting">Perfex troubleshooting</a></p>
+      </section>
+
+      <section id="compatibility" aria-labelledby="compatibility-title">
+        <h2 id="compatibility-title">Compatibility and support</h2>
+        <p>Version <strong>0.1.4</strong> targets Perfex CRM Next v1.0.1. Automated coverage uses simulated responses for connection, currency and environment checks, invoice payments, refunds and reconciliation. A separate GBP test against Square Sandbox verified hosted checkout, signed delivery, one posted payment and a processed refund. Verify checkout and refunds with your own Sandbox seller and currency during setup.</p>
+        <p>Square lists payment processing in Australia, Canada, France, Ireland, Japan, Spain, the United Kingdom and the United States. The selected Square location controls the permitted currency. This module covers hosted invoice checkout and refunds on the original payment. Separate Square Terminal, subscriptions and catalogue workflows are outside its scope. <a href="https://developer.squareup.com/docs/international-development">Square seller markets</a></p>
+        <p>For module support, use the support channel supplied with your download. Include the module version, Perfex version, Square environment, issue time, relevant Perfex invoice number and Square event, payment or refund ID. Remove secrets and customer information from screenshots and logs.</p>
+        <p><a href="#top">Back to top</a></p>
+      </section>
+    </main>
+  </div>
+
+  <footer>Granulr · Square Payments setup guide · This guide and its Perfex screenshots are included in the download.</footer>
+</body>
+</html>
