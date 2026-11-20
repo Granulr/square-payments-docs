@@ -88,7 +88,7 @@
       <h1>Square Payments for Perfex CRM Next</h1>
       <p>Connect your live Square account and start taking payments on Perfex invoices.</p>
       <p><strong>Requires Perfex CRM Next v1.0.1 or later. Perfex CRM Classic (CodeIgniter) is incompatible.</strong></p>
-      <p class="version">Setup guide · Version 0.1.4 development and review build</p>
+      <p class="version">Setup guide · Version 1.0.0</p>
     </div>
   </header>
 
@@ -128,11 +128,11 @@
       <section id="install" aria-labelledby="install-title">
         <h2 id="install-title">1. Install the module</h2>
         <ol>
-          <li>Extract the purchase download and locate <strong>SquarePayments-0.1.4.zip</strong>.</li>
+          <li>Extract the purchase download and locate <strong>SquarePayments-1.0.0.zip</strong>.</li>
           <li>In Perfex, open <strong>Settings → Application → Modules</strong>. Upload the inner module ZIP and enable <strong>Square Payments</strong>.</li>
           <li>Open <strong>Settings → Finance → Payment Gateways</strong>. Find the <strong>Square</strong> row and select <strong>Configure</strong> to edit its settings.</li>
         </ol>
-        <p>For a first-time installation, upload the latest ZIP directly. Perfex creates the module tables when you enable it. Earlier versions are unnecessary.</p>
+        <p>For a first-time installation, upload the latest ZIP directly. If Perfex opens its maintenance screen after you enable Square Payments, complete the database migration step so Perfex can create the module tables. If you manage modules from the command line, run <code>php artisan module:migrate SquarePayments</code> after enabling the module.</p>
         <figure>
           <img src="images/01-payment-gateways.png" alt="Perfex Next Payment Gateways list with the Square row and its Configure button">
           <figcaption>Open Configure on the Square row to set up the gateway.</figcaption>
@@ -211,7 +211,7 @@
         <ol>
           <li>Check the new package’s version requirements and test it on a copy of the installation.</li>
           <li>Back up the database, installed module files and the Perfex encryption key. Retain the previous package and protect the backup.</li>
-          <li>Use Perfex’s module upload or update flow to replace the module. Preserve the installed module data and follow the package’s migration instructions.</li>
+          <li>To upgrade from 0.1.4, upload <strong>SquarePayments-1.0.0.zip</strong> under <strong>Settings → Application → Modules</strong> to replace the installed module. This release uses the existing migration history.</li>
           <li>Verify the connection and delivery status for each configured environment. If you used OAuth on an earlier build, enter the personal access token for the same Square merchant in Configure before taking new invoice payments. Existing payments and refunds keep their original references. Check the scheduler and queue, then test an eligible invoice and a refund on the staging copy.</li>
         </ol>
         <p><a href="https://perfexcrm.com/docs/1.x/cron">Perfex cron setup</a> · <a href="https://perfexcrm.com/docs/1.x/queues">Perfex queue setup</a></p>
@@ -282,7 +282,7 @@
 
       <section id="compatibility" aria-labelledby="compatibility-title">
         <h2 id="compatibility-title">Compatibility and support</h2>
-        <p>Version <strong>0.1.4</strong> targets Perfex CRM Next v1.0.1. Automated coverage uses simulated responses for connection, currency and environment checks, invoice payments, refunds and reconciliation. A GBP end-to-end check in Square Sandbox verified hosted checkout, signed delivery, one posted payment and a processed refund.</p>
+        <p>Version <strong>1.0.0</strong> requires Perfex CRM Next v1.0.1 or later. Automated coverage uses simulated responses for connection, currency and environment checks, invoice payments, refunds and reconciliation. The end-to-end GBP check used 0.1.4 in Square Sandbox and verified hosted checkout, signed delivery, a posted invoice payment and a processed refund. Version 1.0.0 uses the same payment and refund implementation.</p>
         <p>Square lists payment processing in Australia, Canada, France, Ireland, Japan, Spain, the United Kingdom and the United States. The selected Square location controls the permitted currency. This module covers hosted invoice checkout and refunds on the original payment. Separate Square Terminal, subscriptions and catalogue workflows are outside its scope. <a href="https://developer.squareup.com/docs/international-development">Square seller markets</a></p>
         <p>For module support, use the support channel supplied with your download. Include the module version, Perfex version, Square environment, issue time, relevant Perfex invoice number and Square event, payment or refund ID. Remove secrets and customer information from screenshots and logs.</p>
         <p><a href="#top">Back to top</a></p>
